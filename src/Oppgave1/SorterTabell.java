@@ -89,16 +89,39 @@ public class SorterTabell {
     // c)
     public static <T extends Comparable<? super T>> void kombinertSortering(T[] a, int forste, int siste) {
 
-        // flytt minste element
-        int minIndex = forste;
+
         for(int i = siste; i > forste; i--) {
-            if(a[i].compareTo(a[minIndex]) < 0) {
-                minIndex = i;
+            if(a[i].compareTo(a[i-1]) < 0) {
+                swap(a, i, i-1);
             }
         }
-        swap(a, minIndex, forste);
-
+        System.out.print(a[0]);
         sorteringToElement(a, forste + 1, siste);
+    }
+
+    public static void main(String[] args) {
+        Integer[] liste = {5,9,1,5,2,8,2};
+        for( int l : liste) {
+            System.out.print(l + " ");
+        }
+
+        System.out.println();
+        sorterVedInnsetting(liste);
+        for( int l : liste) {
+            System.out.print(l + " ");
+        }
+
+        System.out.println();
+        sorteringToElement(liste, liste.length-1, 0);
+        for( int l : liste) {
+            System.out.print(l + " ");
+        }
+
+        System.out.println();
+        kombinertSortering(liste,  0, liste.length-1);
+        for( int l : liste) {
+            System.out.print(l + " ");
+        }
     }
 
 }
