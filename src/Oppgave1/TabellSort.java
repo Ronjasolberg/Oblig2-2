@@ -10,7 +10,7 @@ public class TabellSort {
 
 
         Random tilfeldig = new Random();
-        int n = 122000;
+        int n = 20000;
         int antal = 10;
         Integer[][] a = new Integer[antal][n];
 
@@ -31,14 +31,12 @@ public class TabellSort {
             totaltTid+=(slutt-start);
 
 
-
-
         }
 
         double gjennomsnitt=totaltTid/(antal*1_000_000_000.0);
 
 
-        System.out.println(gjennomsnitt);
+        System.out.println("Gjennomsnitt: " + gjennomsnitt + " sek");
 
 
 

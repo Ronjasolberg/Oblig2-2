@@ -91,12 +91,12 @@ public class SorterTabell {
 
         // flytt minste element
         int minIndex = forste;
-        for(int i = forste + 1; i <= siste; i++) {
+        for(int i = siste; i > forste; i--) {
             if(a[i].compareTo(a[minIndex]) < 0) {
                 minIndex = i;
             }
         }
-        swap(a, forste, minIndex);
+        swap(a, minIndex, forste);
 
         sorteringToElement(a, forste + 1, siste);
     }
