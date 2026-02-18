@@ -58,20 +58,15 @@ public class SorterTabell {
 
     // b)
     public static <T extends Comparable<? super T>> void sorteringToElement(T[] a, int forste, int siste) {
-
-        while(forste < siste) {
-            int min = forste; // antar at første er minst
-            int max = forste; // antar at første er størst
+        int i = (siste - forste +1)%2==1 ? 1:2;
+        i+=forste;
+        for(;i<siste; i+=2) {
+            int minste = ?; // antar at første er minst
+            int storste = ?; // antar at første er størst
 
             // finner minste og største i intervallet[forste, siste]
             for(int i = forste + 1; i <= siste; i++) {
-                if(a[i].compareTo(a[min]) < 0) {
-                    min = i;
-                }
 
-                if(a[i].compareTo(a[max]) > 0) {
-                    max = i;
-                }
 
                 swap(a, forste, min);
                 if(max == forste) {
