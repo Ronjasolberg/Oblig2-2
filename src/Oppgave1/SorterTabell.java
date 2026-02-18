@@ -57,27 +57,44 @@ public class SorterTabell {
     }
 
     // b)
-    public static <T extends Comparable<? super T>> void sorteringToElement(T[] a, int forste, int siste) {
-        int i = (siste - forste +1)%2==1 ? 1:2;
-        i+=forste;
-        for(;i<siste; i+=2) {
-            int minste = ?; // antar at første er minst
-            int storste = ?; // antar at første er størst
+    public static <T extends Comparable<? super T>> void sorteringToElement(T[] a) {
+        int n = a.length;
+        for(int i = n - 1; i > 0; i--) {
+            if(a[i].compareTo(a[i-1]) < 0) {
+                swap(a, i, i-1);
+            }
+        }
+
+        int i = n % 2 == 1 ? 1:2;
+
+        for( ; i < n; i += 2) {
+
 
             // finner minste og største i intervallet[forste, siste]
-            for(int i = forste + 1; i <= siste; i++) {
-
-
-                swap(a, forste, min);
-                if(max == forste) {
-                    max = min;
-                }
-
-                swap(a, siste, max);
-
-                forste++;
-                siste--;
+            T minste;
+            T storste;
+            if(a[i].compareTo(a[i + 1]) < 0) {
+                minste = a[i];
+                storste = a[i + 1];
+            } else {
+                minste = a[i + 1];
+                storste = a[i];
             }
+
+            int j = i + 1; // posisjon vi skal flytte til
+            while (storste.compareTo(a[j - 2]) < 0 ) {
+                a[j] = a[j - 2];
+                j--;
+            }
+
+            a[j] = storste;
+
+            j--;
+            while(minste.compareTo(a[j - 1]) < 0) {
+                a[j] = a[j - 1];
+                j--;
+            }
+            a[j] = minste;
         }
     }
 
@@ -90,8 +107,7 @@ public class SorterTabell {
                 swap(a, i, i-1);
             }
         }
-        System.out.print(a[0]);
-        sorteringToElement(a, forste + 1, siste);
+        sorteringToElement(a);
     }
 
     public static void main(String[] args) {
@@ -107,7 +123,7 @@ public class SorterTabell {
         }
 
         System.out.println();
-        sorteringToElement(liste, liste.length-1, 0);
+        sorteringToElement(liste);
         for( int l : liste) {
             System.out.print(l + " ");
         }
